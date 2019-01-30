@@ -1,0 +1,637 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>{Title}</title>
+
+<link rel="shortcut icon" href="{Favicon}">
+<link rel="alternate" type="application/rss+xml" href="{RSS}">
+{block:Description}<meta name="description" content="{MetaDescription}" />{/block:Description}
+
+<link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Encode+Sans" rel="stylesheet"> 
+
+
+<script type="text/javascript"
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+
+<!---BOX POPUP SCRIPT-->
+
+<script type="text/javascript"
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+//
+$('a.poplight[href^=#]').click(function() {
+var popID = $(this).attr('rel'); //Get Popup Name
+var popURL = $(this).attr('href'); //Get Popup href to define size
+var query= popURL.split('?');
+var dim= query[1].split('&');
+var popWidth = dim[0].split('=')[1]; //Gets the first query string value
+$('#' + popID).fadeIn().css({ 'width': Number( popWidth ) }).prepend('<a href="#" class="close"></a>');
+var popMargTop = ($('#' + popID).height() + 80) / 2;
+var popMargLeft = ($('#' + popID).width() + 80) / 2;
+//Apply Margin to Popup
+$('#' + popID).css({
+'margin-top' : -popMargTop,
+'margin-left' : -popMargLeft
+});
+$('body').append('<div id="fade"></div>');
+$('#fade').css({'filter' : 'alpha(opacity=80)'}).fadeIn(); //Fade in the fade layer - .css({'filter' : 'alpha(opacity=80)'})
+return false;
+});
+$('a.close, #fade').live('click', function() {
+$('#fade , .popup_block').fadeOut(function() {
+$('#fade, a.close').remove(); //fade them both out
+});
+return false;
+});
+});
+</script>
+
+
+<!---MAP POPUP SCRIPT--->
+
+<script>
+$(document).ready(function() {
+//
+$('area.poplight').click(function() {
+var popID = $(this).attr('rel'); //Get Popup Name
+var popURL = $(this).attr('href'); //Get Popup href to define size
+var query= popURL.split('?');
+var dim= query[1].split('&');
+var popWidth = dim[0].split('=')[1]; //Gets the first query string value
+$('#' + popID).fadeIn().css({ 'width': Number( popWidth ) }).prepend('<a href="#" class="close"></a>');
+var popMargTop = ($('#' + popID).height() + 80) / 2;
+var popMargLeft = ($('#' + popID).width() + 80) / 2;
+//Apply Margin to Popup
+$('#' + popID).css({
+'margin-top' : -popMargTop,
+'margin-left' : -popMargLeft
+});
+$('body').append('<div id="fade"></div>');
+$('#fade').css({'filter' : 'alpha(opacity=80)'}).fadeIn(); //Fade in the fade layer - .css({'filter' : 'alpha(opacity=80)'})
+return false;
+});
+$('a.close, #fade').live('click', function() {
+$('#fade , .popup_block').fadeOut(function() {
+$('#fade, a.close').remove(); //fade them both out
+});
+return false;
+});
+});
+</script>
+
+
+
+<style type="text/css">
+
+	
+	
+	body {
+		background-image: url('https://66.media.tumblr.com/5878fd14f35aa4eec01600812a6ec263/tumblr_ouykbssi5V1w4bnhro2_r1_500.jpg');
+		background-size:cover;
+		background-position:top left;
+		background-repeat:no-repeat;
+		background-attachment:fixed;
+		margin: 0px;
+		padding: 0px;
+		overflow-y: scroll;
+		overflow-x: hidden;
+		font-size: 12px;
+		
+		
+	}
+	
+	#topbar {
+		position: relative;
+		background:#87d6e7;
+		color: #234351;
+		width: 100%;
+		height: 30px;
+			padding: 25px;
+			border-top: #116F0D;
+			top: 0px;
+			
+	}
+	
+ .mainbar { 
+     		font-size: 40px;
+			text-align: left;
+     		font-family: 'Dancing Script', cursive;
+     
+ }
+.sidebar {
+    padding: 10px; 
+    position: absolute;
+    top: 30px;
+    left:1000px;
+}
+ 
+.sidebar a {color:#fff; font-family: 'Encode Sans', sans-serif; font-size: 12px; letter-spacing: 2px;}
+.sidebar a:hover {color: #7D498D;}
+	
+	
+	a {
+	    text-decoration:none;
+	    color: #458FB3;
+	    
+	}
+	
+	.boxes1 {
+		position: relative;
+		top: 400px;
+		left: 125px;
+		width: 100px;
+		height: 100px;
+		-webkit-border-radius: 50px;
+		-moz-border-radius: 50px;
+		border-radius:50px;
+		background: #fff;
+		text-align: center;
+		vertical-align: middle;
+		line-height:100px;
+		box-shadow: 10px 10px 5px #3A525D;
+		
+	}
+	
+	.boxes2 {
+		position: absolute;
+		top: 200px;
+		right: 100px;
+		width: 100px;
+		height: 100px;
+    	text-align: center;
+    	vertical-align: middle;
+		line-height:100px;
+		-webkit-border-radius: 50px;
+		-moz-border-radius: 50px;
+		border-radius:50px;
+		background: #fff;
+		box-shadow: 10px 10px 5px #3A525D;
+
+	}
+	
+	
+	.mapbox {
+		position: absolute;
+			top: 180px;
+			left: 400px;
+			height: 350px;
+			width: 500px;
+		background: #fff;
+	    box-shadow: 10px 10px 5px #333433;
+	}
+	
+/* popups */
+	
+.popup_block{
+    display:none;
+    background:#fff;
+    padding:20px;
+    border:1px solid #eee;  /* if you want a solid white pop-up, delete this */
+    float:left;
+    position:fixed;
+    top:50%;left:50%;
+    z-index: 99999;
+    -webkit-box-shadow: 0px 0px 20px #000; /* delete for solid white */
+    -moz-box-shadow: 0px 0px 20px #000; /* delete for solid white */
+    box-shadow: 0px 0px 20px #000; /* delete for solid white */
+}
+ 
+*html #fade {position: absolute;}
+*html .popup_block {position: absolute;}
+#fade {
+    display:none;
+    position:fixed;
+    left:0px;
+    top:0px;
+    width:100%;
+    height:100%;
+    z-index:9999;
+    background:#000; /* change to #fff for solid white */
+    opacity:0.5; /* change to opacity:1; */
+}	
+	
+	
+	
+
+	</style>
+
+
+
+</head>
+
+<body>
+
+<div id="topbar">
+
+<div class="mainbar">about</div>
+
+<div class="sidebar">
+<a href="/">return</a> | <a href="http://tumblr.com">dashboard</a>
+</div>
+</div>
+
+<!--- CIRCLE pop up boxes-->
+	
+<div id="box1" class="popup_block">
+<p><b><i>Soaring Sails</i></b> is a role-playing campaign run in FATE Core about a group of misfit young women who have all ended up running away from their pasts on the same airship. The Sun’s Heart might be their refuge, but they leave it often for errands and adventures, and it’s then that people they thought they’d left behind catch up to them. These ghosts and echoes–and the new friends and enemies met along the way–stretch the girls’ imaginations and capabilities as they talk (and fight) their way through staying alive, and keeping those they love safe.</p>
+
+<p>Set in a broken world where technology-proud sky islands left the magically-inclined ground behind five-hundred years ago, the crew must navigate entrenched tensions between the Coalition and the Surface. Though the team itself sometimes fractures along the same lines, they are slowly learning how to trust one another and live in-between–to rely on Coalition technology and surfacer Source magic to help them out of their many tight spots whether the <i>Sun's Heart</i> docks on the ground or in the air.</p>
+</div>
+ 
+</div></div></div></div></div></div></div></div></div></div>
+	
+	
+<div id="box2" class="popup_block">
+<b>The Game Master:</b> Alyx<br>
+<b>Caltran of Vetrantis:</b> Joanne<br>
+<b>Lisseth:</b> Katie<br>
+<b>Naiakiir Narahl:</b> Silver<br>
+<b>Neema Khortaavian:</b> Shannon<br>
+<b>Runa Vay of Tribe Jakosa:</b> Megan</a>
+</div>
+ 
+</div></div></div></div></div></div></div></div></div></div>
+
+
+<!-----END CIRCLE BEGIN MAP ------>	
+	
+
+<div id="box3" class="popup_block">
+<b>Vetrantis</b>
+<br>
+<p>Though Vetrantis was originally meant to be a member of the Coalition hundreds of years ago, the death of their chief engineer prevented the ascension. Thus, Vetrantis stayed below, but thanks to a lucky bit of protection, managed to avoid some of the larger catastrophes as the High Empires collapsed.</p>
+
+<p>In current days, Vetrantis is one of the foremost sources of technological trade on the surface, as it maintains fairly good relations with most of the Coalition islands. Those wishing to send goods to the islands and those wishing to buy intricate manufactured items from above find their way to Vetrantis’ sprawling commercial district. </p>
+
+<p>There is also a sense of innovation to Vetrantis’ local craftsmen, many of whom seek to blend technology and magic in ways that few others have explored. With steady influx of knowledge and invention from all sides, powerful creations breed new ideas within the city, for good or ill.
+While it is not the capital of Pemall, the city is a crown jewel for the nation, bringing lucrative trade and diplomatic relations.</p>
+
+</div>
+ 
+</div></div></div></div></div></div></div></div></div></div>
+
+<div id="box4" class="popup_block">
+<b>The Laelle Wild</b><br>
+<i>the scryglass can't make out this location right now--try scrying again later!</i>
+
+</div>
+ 
+</div></div></div></div></div></div></div></div></div></div>
+
+<div id="box5" class="popup_block">
+<b>Rondell</b><br>
+<small><i>The Quick City</i></small>
+<p>The second largest Coalition city, though one far less well-maintained than Haventeem, Rondell was once an agricultural island. However, over the years, Rondell has slipped into more corrupt practices and is gaining a reputation for its underworld and criminal elements. Gambling dens, speakeasies, and houses of pleasure are numerous, and the chances that some of the ships in its skyport are pirates are frighteningly good. For the last hundred years or so, a criminal syndicate known as The Lace has made their home base there, a mix of thieves, smugglers, and even a few assassins.</p>
+</div>
+ 
+</div></div></div></div></div></div></div></div></div></div>
+
+<div id="box6" class="popup_block">
+<b>Wress</b>
+
+<p>A good-sized city in the kingdom of Pemall, notable as a hub of trade. Wress stands at the edge of a large wilderness on the borders between Pemall and the Ivine Empire. It’s a popular spot for sport hunters, and mid-winter they have a large event in which an elk hunt takes place.</p>
+</div>
+ 
+</div></div></div></div></div></div></div></div></div></div>
+
+<div id="box7" class="popup_block">
+<b>Gibralt</b><br>
+<small><i>The City of Two Faces</i></small>
+<br>
+<p>Coalitioners would count the rings on their fingers after shaking hands with someone from Rondell, but they might not shake the hands of a Gibraltan at all (because, if you look below, people have a problem with Source users).</p>
+
+<p>Gibralt is one of the only Coalition cities which decided to build downwards as well as upwards. While most islands kept fairly natural undersides, the Gibraltans were blessed by an inspired architect who constructed buildings and structures hanging from the underside.</p>
+
+<p>While the Gibraltan undercity is not a magical construction, magic was used to support the mundane architecture's construction, making it cheaper and safer. The undercity is the wealthier district than the topside, and has its own skyport, a hollow column in the center of the island for ships to ascend.</p>
+
+<p>Gibralt has a reputation for dabbling with the Source more than other islands, which gives Gibraltans a bad reputation. Actual conduits on Gibralt can face intense scorn as the “good Coalitioners” there feel they're the problem.</p>
+
+</div>
+ 
+</div></div></div></div></div></div></div></div></div></div>
+
+<div id="box8" class="popup_block">
+<b>Nior</b>
+<br>
+<i>the scryglass can't make out this location right now--try scrying again later!</i>
+</div>
+ 
+</div></div></div></div></div></div></div></div></div></div>
+
+
+<div id="box9" class="popup_block">
+<b>Rakvin</b>
+
+<p>The "twin sister" of the Ivine Empire. A proud and powerful expansionist nation, with a great warrior class: the Faceless. Rakvin seeks to expand its influence as far as possible by conquering lands and killing nay who rseist their campaigns.</p><p>The great city of Rakvin itself is located in a caldera which rises on three sides, with gentle slopes at the "front" from a long dead lava flow. A good portion of the empire is bounded by the Guardian Ridge, a much larger caldera spanning hundreds of miles. The fertile lands within are the heart of the Rakvine side of the Ivine Empire.</p>
+</div>
+ 
+</div></div></div></div></div></div></div></div></div></div>
+
+
+<div id="box10" class="popup_block">
+<b>Ceress</b><br>
+<small><i>The Wind's Oasis</i></small>
+<p>Though the main island of Ceress is on the smaller side of the Coalition, it controls the largest number of adjunct islands (over 20 small islands), which grow a multitude of crops. Ceress is known for their islands’ floating finesse, able to keep things at just the right altitude to grow perfect crops.</p>
+
+<p>Though Ceress's habitual drifting patterns often take them near Ivine's northern capital, Rakvin, Ceress does very little trade with either the northern or southern Ivinans, but rather, has much stronger diplomatic ties to Pemall.</p>
+
+<p>Ceress has the widest range of migration of all the islands.</p>
+
+</div>
+ 
+</div></div></div></div></div></div></div></div></div></div>
+
+
+<div id="box11" class="popup_block">
+<b>Mevined</b>
+
+<p>The "twin brother" of the Ivine Empire. More magically inclined than their neighbors in Rakvin, the Mevine revere the Source as ultimate power and believe that to wield it is the highest power. Their highest ranking members of society are known as Arcants and they specialize in many different kinds of magics.</p>
+
+<p> Mevined's eponymous capital lies deep in the south. The city was originally built upon a flat-topped plateau in the mountains, but has spread throughout the vast volcanic cavern systems in the mountain range. Construction is very orderly, with the city moving ever downward in levels and tiers, carefully supported by a complex system of columns and open sections in floorplans to look up or down.</p>
+</div>
+ 
+</div></div></div></div></div></div></div></div></div></div>
+
+
+<div id="box12" class="popup_block">
+<b>Damerra</b>
+<br>
+<p>Damerra is the proud capital city of the kingdom of Pemall, ruled by the Eltrand royal family for the past two hundred years. Damerra is situated on a deep bay, with a high cliff peninsula serving as its skyport. Damerra is a place of tradition and proud magical history, with the Halls of the Exalt serving as an open place of learning for any who wish to pursue magical endeavors or learn to craft foci.</p>
+
+<p>The palace is known as the Azurium, and is a beautiful structure set on the highest point of Damerra’s northern cliff, overlooking the mouth of the river and the sea. Its surface is a dazzling white, with domes decorated in mosaics of all hues of blue, and gilded accents. The design is delicate, with minarets and tall, slender spires.</p>
+
+<p>At the apex of the southern cliff, slightly lower than the Azurium, is the Halls of the Exalt, Pemall’s finest school. Though the Halls admit students of many disciplines, their magical tutoring is by far the specialty. Though Mevined also has rigorous magical studies, the Halls are nowhere near as secretive with their knowledge, and believe that any who wish to learn should be able to.</p>
+
+</div>
+ 
+</div></div></div></div></div></div></div></div></div></div>
+
+
+<div id="box13" class="popup_block">
+<b>Olenn</b><br>
+<small><i>The Stalwart</i></small>
+<p>Olenn is the strictest of the Coalition cities regarding magic use, and the only where it is explicitly forbidden. Olent people tend to name their children after virtues or other odd kinds of names, kind of Weird Puritan names. They tend to float mostly over the Nafir desert, and are the city that does the least trade with other Coalition cities and the Surface, priding themselves on their self sufficiency.</p>
+</div>
+ 
+</div></div></div></div></div></div></div></div></div></div>
+
+
+<div id="box14" class="popup_block">
+<b>Sielle</b><br>
+<small><i>The Southern Star</i></small>
+<p>Smallest of the islands, Sielle currently drifts, oft forgotten by the others, nestled within the Gravid Mounts on the border between Pemall and the Ivine Empire. Its close proximity to Ivine's southern capital, Mevined, has produced an interesting relationship between the two cities, despite their many differences.</p>
+</div>
+ 
+</div></div></div></div></div></div></div></div></div></div>
+
+
+<div id="box15" class="popup_block">
+<b>Haventeem</b>
+<br><small><i>The Jewel of the Clouds</i></small>
+<p>The largest of the Coalition cities, Haventeem sprawls across a large swath of floating land. It is, in the opinions of many, the epitome of what a Coalition city should be. Haventeem is the home of the Exalted Institute of Engineering, as well as the host to all Coalition gatherings, when the Chancellors of the islands gather for councils. Just about anything one wishes to find in a Coalition city can be found somewhere in Haventeem.</p>
+
+</div>
+ 
+
+</div></div></div></div></div></div></div></div></div></div>
+
+
+<div id="box16" class="popup_block">
+<b>Felgreene</b><br>
+<small><i>The Iron Heart</i></small>
+
+<p>The mercantile and manufacturing heart of the Coalition, Felgreene leads the way in making things better, faster, and cheaper. Competition is fierce, but currently, the effort still pays off, as people from all over come to Felgreene for goods of all kinds. Felgreene sports an excellent university, an academic rival to the Exalted Institute on Haventeem.</p>
+
+<p>Felgreene is the only city which habitually floats over water.</p>
+
+
+</div>
+ 
+</div></div></div></div></div></div></div></div></div></div>
+
+
+<div id="box17" class="popup_block">
+<b>Baud</b><br>
+<small><i>The City of Dawning Light</i> or <i>Muse's Hearth</i></small>
+<p>Baud has an assortment of fanciful monikers, as it is home to a great artistic movement. The city has become a home to any seeking to hone their more creative side, with a number of master artisans of any and every discipline making it their home, and occasionally taking on students. The architectural wonders of Baud are known to be some of the greatest in the world.</p>
+</div>
+ 
+</div></div></div></div></div></div></div></div></div></div>
+
+
+<div id="box18" class="popup_block">
+<b>The Rent Tears</b>
+<p>
+A rough, windswept area stretching across the northernmost sections of Pemall and the Ivine Empire. The landscape here is rocky and filled with broken crags and jagged cliffs, slicing through the terrain. The Rent Tears are home to hardy tribes of nomadic peoples, such as Jakosa, who often know the safest routes through the Tears, following the same labyrinthine paths their forebears walked for generations.</p>
+</div>
+ 
+</div></div></div></div></div></div></div></div></div></div>
+
+<div id="box19" class="popup_block">
+<b>Johd</b>
+<p>
+<i>the scryglass can't make out this location right now--try scrying again later!</i></p>
+</div>
+ 
+</div></div></div></div></div></div></div></div></div></div>
+
+
+<div id="box20" class="popup_block">
+<b>Utaji</b>
+<p>
+Also known as “The Sand Port,” Utaji is on the other side of the Kovrone Range pass from Johd, on the side of the Ivine Empire. Rakvine soldiers keep the peace in this desert city, aided by Mevine Arcants who provide food and water for its many residents. Utaji is one of the largest cities in the Ivine Empire which truly shows both Rakvin and Mevined’s cultural influences blended, though traces of its original culture lie simmering beneath the surface, remembering times when the city stood alone.</p>
+</div>
+ 
+</div></div></div></div></div></div></div></div></div></div>
+
+<div id="box21" class="popup_block">
+<b>Pava Forest</b>
+<p>
+<i>the scryglass can't make out this location right now--try scrying again later!</i></p>
+</div>
+ 
+</div></div></div></div></div></div></div></div></div></div>
+
+
+<div id="box22" class="popup_block">
+<b>Jirah</b>
+<p>
+<i>the scryglass can't make out this location right now--try scrying again later!</i></p>
+</div>
+ 
+</div></div></div></div></div></div></div></div></div></div>
+
+
+<div id="box23" class="popup_block">
+<b>Diast</b>
+<p>
+<i>the scryglass can't make out this location right now--try scrying again later!</i></p>
+</div>
+ 
+</div></div></div></div></div></div></div></div></div></div>
+
+<div id="box24" class="popup_block">
+<b>Crossel</b>
+<p>
+<i>the scryglass can't make out this location right now--try scrying again later!</i></p>
+</div>
+ 
+</div></div></div></div></div></div></div></div></div></div>
+
+<div id="box25" class="popup_block">
+<b>Scooped Cliffs</b>
+<p>
+<i>the scryglass can't make out this location right now--try scrying again later!</i></p>
+</div>
+ 
+</div></div></div></div></div></div></div></div></div></div>
+
+
+<div id="box26" class="popup_block">
+<b>The Fanwah Desert</b>
+<p>
+<i>the scryglass can't make out this location right now--try scrying again later!</i></p>
+</div>
+ 
+</div></div></div></div></div></div></div></div></div></div>
+
+
+
+<div id="box27" class="popup_block">
+<b>Fort Alzedra</b>
+<p>
+<i>the scryglass can't make out this location right now--try scrying again later!</i></p>
+</div>
+ 
+</div></div></div></div></div></div></div></div></div></div>
+	
+	
+
+<div id="box28" class="popup_block">
+<b>Fort Robeld</b>
+<p>
+<i>the scryglass can't make out this location right now--try scrying again later!</i></p>
+</div>
+ 
+</div></div></div></div></div></div></div></div></div></div>	
+
+
+<div id="box29" class="popup_block">
+<b>Missei</b>
+<p>
+<i>the scryglass can't make out this location right now--try scrying again later!</i></p>
+</div>
+ 
+</div></div></div></div></div></div></div></div></div></div>
+
+
+
+<div id="box30" class="popup_block">
+<b>The Nafir Desert</b>
+<p>
+<i>the scryglass can't make out this location right now--try scrying again later!</i></p>
+</div>
+ 
+</div></div></div></div></div></div></div></div></div></div>
+
+
+<div id="box31" class="popup_block">
+<b>The Gravid Mounts</b>
+<p>
+<i>the scryglass can't make out this location right now--try scrying again later!</i></p>
+</div>
+ 
+</div></div></div></div></div></div></div></div></div></div>
+	
+	
+
+<div id="box32" class="popup_block">
+<b>The Kovrone Range</b>
+<p>
+<i>the scryglass can't make out this location right now--try scrying again later!</i></p>
+</div>
+ 
+</div></div></div></div></div></div></div></div></div></div>	
+
+<div id="box33" class="popup_block">
+<b>Fort Immez</b>
+<p>
+<i>the scryglass can't make out this location right now--try scrying again later!</i></p>
+</div>
+ 
+</div></div></div></div></div></div></div></div></div></div>
+	
+	
+<div id="box34" class="popup_block">
+<b>Fort Tirtea</b>
+<p>
+<i>the scryglass can't make out this location right now--try scrying again later!</i></p>
+</div>
+ 
+</div></div></div></div></div></div></div></div></div></div>
+	
+	
+	
+<!----END MAP BEGIN DIV CLASSES----->	
+
+	<div class="boxes1"><a href="#?w=700" rel="box1" class="poplight">the game</a></div>
+
+<!--map begins--->
+
+	<div class="mapbox"> 
+	<img src="http://68.media.tumblr.com/1c8bb7f303a89e680eea0450c4d045e2/tumblr_inline_oqd7uaUn8R1r9s0se_500.png" alt="map of southern sosari" usemap="#map1503106385132">
+	<map id="map1503106385132" name="map1503106385132"> 
+	
+        <area shape="rect" coords="428,48,466,82" title="vetrantis" alt="vetrantis description" href="#?w=700" rel="box3" class="poplight" target="_self">
+		<area shape="rect" coords="234,12,302,60" title="the laelle wild" alt="LW descrip" href="#?w=500" rel="box4" class="poplight" target="_self">
+		<area shape="rect" coords="189,98,221,123" title="rondell" alt="rondell descrip" href="#?w=500" rel="box5" class="poplight" target="_self">
+		<area shape="rect" coords="237,110,257,134" title="wress" alt="wress descrip" href="#?w=500" rel="box6" class="poplight" target="_self">
+        <area shape="rect" coords="308,41,333,62" title="gibralt" alt="gibralt descrip" href="#?w=700" rel="box7" class="poplight" target="_self">
+        <area shape="rect" coords="339,29,364,51" title="nior" alt="nior descrip" href="#?w=500" rel="box8" class="poplight" target="_self">
+		<area shape="rect" coords="58,2,97,34" title="rakvin" alt="rakvin descrip" href="#?w=500" rel="box9" class="poplight" target="_self">
+	    <area shape="rect" coords="6,100,36,124" title="ceress" alt="ceress descrip" href="#?w=500" rel="box10" class="poplight" target="_self">
+		<area shape="rect" coords="58,288,99,316" title="mevined" alt="mev descrip" href="#?w=500" rel="box11" class="poplight" target="_self">
+		<area shape="rect" coords="312,228,356,261" title="damerra" alt="damerra descrip" href="#?w=700" rel="box12" class="poplight" target="_self">
+		<area shape="rect" coords="324,314,354,338" title="sielle" alt="sielle descrip" href="#?w=500" rel="box13" class="poplight" target="_self">
+		<area shape="rect" coords="90,324,132,335" title="olenn" alt="olenn descrip" href="#?w=500" rel="box14" class="poplight" target="_self">
+		<area shape="rect" coords="280,195,338,219" title="haventeem" alt="haventeem descrip" href="#?w=500" rel="box15" class="poplight" target="_self">
+		<area shape="rect" coords="386,70,427,104" title="felgreene" alt="felgreene descrip" href="#?w=500" rel="box16" class="poplight" target="_self">
+		<area shape="rect" coords="178,212,208,236" title="baud" alt="baud descrip" href="#?w=500" rel="box17" class="poplight" target="_self">
+		<area shape="rect" coords="171,16,216,62" title="the rent tears" alt="rt descrip" href="#?w=500" rel="box18" class="poplight" target="_self">
+		<area shape="rect" coords="209,234,233,251" title="johd" alt="johd descrip" href="#?w=500" rel="box19" class="poplight" target="_self">
+<area shape="rect" coords="156,224,178,247" title="utaji " alt="utaji descrip" href="#?w=500" rel="box20" class="poplight" target="_self">
+<area shape="rect" coords="10,58,63,92" title="pava forest" alt="pf descrip" href="#?w=500" rel="box21" class="poplight" target="_self">
+<area shape="rect" coords="273,84,292,101" title="jirah" alt="jirah descrip" href="#?w=500" rel="box22" class="poplight" target="_self">
+<area shape="rect" coords="348,137,374,158" title="diast" alt="diast descrip" href="#?w=500" rel="box23" class="poplight" target="_self">
+<area shape="rect" coords="261,225,285,245" title="crossel descrip" alt="crossel descrip" href="#?w=500" rel="box24" class="poplight" target="_self">
+<area shape="rect" coords="15,210,66,248" title="scooped cliffs" alt="sc descrip" href="#?w=500" rel="box25" class="poplight" target="_self">
+<area shape="rect" coords="128,163,152,251" title="fanwah desert" alt="fd descrip" href="#?w=500" rel="box26" class="poplight" target="_self">
+<area shape="rect" coords="47,147,78,172" title="fort alzedra" alt="fa descrip" href="#?w=500" rel="box27" class="poplight" target="_self">
+<area shape="rect" coords="144,25,158,49" title="fort robeld" alt="fr descrip" href="#?w=500" rel="box28" class="poplight" target="_self">
+<area shape="rect" coords="100,111,121,134" title="missei" alt="missei descrip" href="#?w=500" rel="box29" class="poplight" target="_self">
+<area shape="rect" coords="218,309,274,356" title="nafir desert" alt="nd descrip" href="#?w=500" rel="box30" class="poplight" target="_self">
+<area shape="rect" coords="13,346,165,360" title="gravid mounts" alt="gm descrip" href="#?w=500" rel="box31" class="poplight" target="_self">
+<area shape="rect" coords="197,149,207,204" title="kovrone range" alt="kr descrip" href="#?w=500" rel="box32" class="poplight" target="_self">
+<area shape="rect" coords="92,249,113,275" title="fort immez" alt="fi descrip" href="#?w=500" rel="box33" class="poplight" target="_self">
+<area shape="rect" coords="156,84,178,116" title="fort tirtea" alt="ft descrip" href="#?w=500" rel="box34" class="poplight" target="_self">
+		<area shape="rect" coords="498,373,499,374" alt="Image HTML map generator" title="HTML Map creator" href="http://www.html-map.com/" target="_self">
+		
+		</map> 
+		
+	
+		</div>
+	
+
+	<div class="boxes2"><a href="#?w=400" rel="box2" class="poplight">the players</a></div>
+	
+
+
+
+
+</body>
+
+
+</html>
